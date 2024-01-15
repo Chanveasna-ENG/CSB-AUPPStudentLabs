@@ -84,10 +84,12 @@ class SchoolAssessmentSystem:
         url = 'https://raw.githubusercontent.com/Chanveasna-ENG/CSB-AUPPStudentLabs/main/semester%202/web%20log.csv'
         response = urllib.request.urlopen(url)
         data = response.read().decode('utf-8')
+        # print(data)
         data_file = StringIO(data)
         self.df = pd.read_csv(data_file)
 
         entry = self.df.shape[0]
+        # print(self.df['Time Spent'])s
         time_spent = self.df['Time Spent'].apply(lambda x: int(x[:-1]))
         total_time_spent = time_spent.sum()
         average_time_spent = total_time_spent / entry
@@ -105,7 +107,7 @@ class SchoolAssessmentSystem:
     
     def generate_summary(self):
         self.__transfer_data()
-        self.__fetch_web_data()
+        entry, total_time_spent, average_time_spent, max_time_spent, min_time_spent = self.__fetch_web_data()
         dataframe = pd.read_csv('all_classes.csv')
         max_average_score = dataframe['Average_Score'].max()
         mean_average_score = dataframe['Average_Score'].mean()
@@ -121,10 +123,11 @@ School Assessment Summary Report:
     - Class {class_most_A} has the most number of A students with {most_A} students
    
 2. Web Data Insights:
-    - Online participation: 95% of students accessed assessment resources online.
-
-3. Recommendations:
-    - Consider additional support for Grade 9B in Mathematics.
+    - Online participation: Students accessed assessment resources online {entry} times.
+    - Total time spent: {total_time_spent} minutes
+    - Average time spent: {average_time_spent} minutes
+    - Maximum time spent: {max_time_spent} minutes
+    - Minimum time spent: {min_time_spent} minutes
 
 Report generated on: {datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")}
 """)
