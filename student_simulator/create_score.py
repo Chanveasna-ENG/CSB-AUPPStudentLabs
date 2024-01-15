@@ -52,11 +52,11 @@ for i in range(1, 3):
         for student in top5:
             student.extend([random.randint(80, 100) for _ in range(10)])
         for student in top15:
-            student.extend([random.randint(70, 90) for _ in range(10)])
+            student.extend([random.randint(75, 90) for _ in range(10)])
         for student in top20:
             student.extend([random.randint(60, 85) for _ in range(10)])
         for student in bottom5:
-            student.extend([random.randint(30, 75) for _ in range(10)])
+            student.extend([random.randint(50, 75) for _ in range(10)])
         
         new_data = top5 + top15 + top20 + bottom5
         new_data.sort(key=lambda x: x[0])

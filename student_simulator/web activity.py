@@ -64,9 +64,9 @@ for i in range(1, 3):
         data += read_csv(csv_file)
     
     new_data = []
-    for _ in range(6969):
+    for _ in range(random.randint(1234, 6969)):
         student = data[random.randint(0, len(data) - 1)]
-        new_data.append([get_random_date(datetime(2023, 1, 1), datetime(2023, 12, 31)).strftime("%Y-%m-%d %H:%M:%S"),student[0], student[1], "www.myschool.com", random.randint(0, 120)])
+        new_data.append([get_random_date(datetime(2023, 1, 1), datetime(2023, 12, 31)).strftime("%Y-%m-%d %H:%M:%S"),student[0], student[1], "www.myschool.com", str(random.randint(0, 120))+'m'])
     
     new_data.sort(key=lambda x: datetime.strptime(x[0], "%Y-%m-%d %H:%M:%S"), reverse=True)
 
