@@ -1,28 +1,27 @@
-
-#Libraries you may need:
-# import csv, collections, dictionary, (pandas as pd), urlopen, etc..
-
-#classes and Functions to implement
-# template class
-# class SchoolAssessmentSystem:
-    
-#     def __init__(self):
-#         pass
-#     def process_file(self):            
-#         pass
-#     def transfer_data(self):
-#         pass
-#     def fetch_web_data(self):
-#         pass
-#     def analyze_content(self):
-#         pass
-#     def generate_summary(self):
-#         pass
-
-# Analyze content & display result area
-# Sample of Output:
-
 """
+Libraries you may need:
+import csv, collections, dictionary, (pandas as pd), urlopen, etc..
+
+classes and Functions to implement
+template class
+class SchoolAssessmentSystem:
+    
+    def __init__(self):
+        pass
+    def process_file(self):            
+        pass
+    def transfer_data(self):
+        pass
+    def fetch_web_data(self):
+        pass
+    def analyze_content(self):
+        pass
+    def generate_summary(self):
+        pass
+        
+Analyze content & display result area
+Sample of Output:
+
 School Assessment Summary Report:
 
 1. Overall Performance of Student A:
