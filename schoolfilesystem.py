@@ -50,9 +50,10 @@ import datetime
 from io import StringIO
 
 class SchoolAssessmentSystem:
-    def __init__(self, files, parent = 'classes') -> None:
+    def __init__(self, files, web_log, parent = 'classes') -> None:
         self.files = files
         self.parent = parent
+        self.url = web_log
 
     def __process_file(self, file):
         self.df = pd.read_csv(file)
@@ -76,15 +77,13 @@ class SchoolAssessmentSystem:
             self.__process_file(f"{self.parent}/{file}")
             average_score, nA, nF = self.__analyze_content()
             data.append([file[6:9], average_score, nA, nF])
-        with open("all_classes.csv", 'w', newline='') as csvfile:
+        with open(f"all_classes {self.parent}.csv", 'w', newline='') as csvfile:
             writer = csv.writer(csvfile)
             writer.writerows(header + data)
     
     def __fetch_web_data(self):
-        url = 'https://raw.githubusercontent.com/Chanveasna-ENG/CSB-AUPPStudentLabs/main/semester%202/web%20log.csv'
-        response = urllib.request.urlopen(url)
+        response = urllib.request.urlopen(self.url)
         data = response.read().decode('utf-8')
-        # print(data)
         data_file = StringIO(data)
         self.df = pd.read_csv(data_file)
 
@@ -108,16 +107,16 @@ class SchoolAssessmentSystem:
     def generate_summary(self):
         self.__transfer_data()
         entry, total_time_spent, average_time_spent, max_time_spent, min_time_spent = self.__fetch_web_data()
-        dataframe = pd.read_csv('all_classes.csv')
+        dataframe = pd.read_csv(f'all_classes {self.parent}.csv')
         max_average_score = dataframe['Average_Score'].max()
         mean_average_score = dataframe['Average_Score'].mean()
         top_class = dataframe[dataframe['Average_Score'] == max_average_score]['Class'].values[0]
         most_A = dataframe['Number of A'].max()
         class_most_A = dataframe[dataframe['Number of A'] == most_A]['Class'].values[0]
         print(f"""
-School Assessment Summary Report:
+School Assessment Summary Report for {self.parent}:
 
-1. Overall Performance of Student:
+1. Overall Performance of Student: 
     - Average score: {mean_average_score}
     - Top-performing class: Grade {top_class} with average score of {max_average_score}
     - Class {class_most_A} has the most number of A students with {most_A} students
@@ -129,5 +128,5 @@ School Assessment Summary Report:
     - Maximum time spent: {max_time_spent} minutes
     - Minimum time spent: {min_time_spent} minutes
 
-Report generated on: {datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")}
+Report generated on: {datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
 """)

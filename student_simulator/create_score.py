@@ -44,10 +44,12 @@ for i in range(1, 3):
             for row in reader:
                 data.append(row)
         
-        top5 = [data.pop(random.randint(0, len(data) - 1)) for _ in range(5)]
-        top15 = [data.pop(random.randint(0, len(data) - 1)) for _ in range(20)]
-        top20 = [data.pop(random.randint(0, len(data) - 1)) for _ in range(20)]
-        bottom5 = [data.pop(random.randint(0, len(data) - 1)) for _ in range(5)]
+        top5 = [data.pop(random.randint(0, len(data) - 1)) for _ in range(random.randint(0, len(data)*3//10))]
+        top15 = [data.pop(random.randint(0, len(data) - 1)) for _ in range(random.randint(len(data)*3//10, len(data)//2))]
+        top20 = [data.pop(random.randint(0, len(data) - 1)) for _ in range(random.randint(len(data)*3//10, len(data)//2))]
+        bottom5 = [data.pop(random.randint(0, len(data) - 1)) for _ in range(random.randint(0, len(data)*3//10))]
+        if data:
+            top20.extend(data)
 
         for student in top5:
             student.extend([random.randint(80, 100) for _ in range(10)])
