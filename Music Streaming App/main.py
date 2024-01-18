@@ -1,0 +1,63 @@
+from musicstreamingapp import Song, MusicLibrary, Playlist
+
+# Create a new song
+lemon_tree = Song("Lemon Tree", "Fools Garden", "Dish Of The Day", "Pop", "3:11")
+pineapple = Song("Pineapple", "Karol G", "KG0516", "Reggaeton", "2:36")
+banana = Song("Banana", "Veasna", "Fruitz", "Hip-Hop", "3:30")
+apple = Song("Apple", "GFRIEND", "回:Song of the Sirens", "K-pop", "3:16")
+ice_apple = Song("Ice Apple", "Veasna", "Fruitz", "Classical", "3:31")
+orange = Song("Orange", "7!!", "OMG!", "J-pop", "3:46")
+grape = Song("Grape", "TWICE", "Summer Nights", "K-pop", "3:17")
+mango = Song("Mango", "Seventeen", "An Ode", "K-pop", "3:12")
+strawberry = Song("Strawberry", "Veasna", "Fruitz", "K-pop", "3:31")
+watermelon = Song("Watermelon", "Bobby", "Love and Fall", "K-pop", "3:13")
+peach = Song("Peach", "IU", "Love Poem", "K-pop", "3:32")
+peach2 = Song("Peach", "GFRIEND", "回:Song of the Sirens", "K-pop", "3:31")
+pear = Song("Pear", "IU", "Love Poem", "K-pop", "3:31")
+star_fruit = Song("Star Fruit", "Veasna", "Fruitz", "Classical", "3:00")
+cherry = Song("Cherry", "IU", "Love Poem", "K-pop", "3:01")
+blueberry = Song("Blueberry", "GFRIEND", "回:Song of the Sirens", "K-pop", "3:41")
+kiwi = Song("Kiwi", "7!!", "OMG!", "J-pop", "2:51")
+ichigo = Song("Ichigo", "Veasna", "Fruitz", "J-pop", "3:11")
+melon = Song("Melon", "GFRIEND", "回:Song of the Sirens", "K-pop", "3:19")
+apricot = Song("Apricot", "GFRIEND", "回:Song of the Sirens", "K-pop", "3:11")
+papaya = Song("Papaya", "Seventeen", "An Ode", "K-pop", "3:54")
+tomato = Song("Tomato", "Veasna", "Fruitz", "K-pop", "3:30")
+soybean = Song("Soybean", "Veasna", "beanz", "Hip-Hop", "4:00")
+dragonfruit = Song("Dragonfruit", "Seventeen", "An Ode", "K-pop", "3:29")
+raspberry = Song("Raspberry", "TWICE", "Summer Nights", "K-pop", "3:31")
+blackberry = Song("Blackberry", "TWICE", "Summer Nights", "K-pop", "3:30")
+blackcurrant = Song("Blackcurrant", "TWICE", "Summer Nights", "K-pop", "3:31")
+cranberry = Song("Cranberry", "TWICE", "Summer Nights", "K-pop", "3:31")
+avocado = Song("Avocado", "7!!", "OMG!", "Pop", "2:41")
+coconut = Song("Coconut", "Veasna", "Fruitz", "Classical", "3:31")
+honeyberry = Song("Honeyberry", "Veasna", "Fruitz", "Classical", "3:31")
+
+# Create a new music library
+library = MusicLibrary()
+library.add_songs([lemon_tree, pineapple, banana, apple, orange, grape, mango, strawberry, watermelon, peach, pear, star_fruit, cherry, blueberry, kiwi, ichigo, melon, apricot, papaya, tomato, soybean, dragonfruit, raspberry, blackberry, blackcurrant, cranberry, avocado, coconut, honeyberry])
+print("Songs by IU:")
+print(library.get_songs_by_artist("IU"))
+print(end="\n\n")
+
+print("Songs in Fruitz:")
+print(library.get_songs_by_album("Fruitz"))
+print(end="\n\n")
+
+print("Songs in K-pop genre:")
+print(library.get_songs_by_genre("K-pop"))
+print(end="\n\n")
+
+print("Songs with title Peach:")
+print(library.get_songs_by_title("Peach"))
+print(end="\n\n")
+
+# Create a new playlist
+playlist = Playlist("Fruitz")
+playlist.add_songs([tomato, ice_apple, peach2, strawberry, ichigo, star_fruit, coconut, soybean, banana])
+playlist.add_song(honeyberry)
+playlist.remove_song(peach2)
+playlist.reorder_songs(honeyberry, 1)
+
+print(f"Songs in {playlist.name}:", end="\n\n")
+playlist.display_playlist()
